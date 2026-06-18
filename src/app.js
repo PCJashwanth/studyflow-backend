@@ -14,8 +14,11 @@ import { notFound, errorHandler } from './middleware/error.js'
 export function createApp() {
   const app = express()
 
+  // CORS_ORIGIN may be a comma-separated list (e.g. local dev + deployed frontend).
+  const allowedOrigins = env.CORS_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
+
   app.use(helmet())
-  app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }))
+  app.use(cors({ origin: allowedOrigins, credentials: true }))
   app.use(express.json())
   if (env.NODE_ENV !== 'test') app.use(morgan('dev'))
 
