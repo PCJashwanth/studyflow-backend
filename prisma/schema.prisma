@@ -17,14 +17,101 @@ enum Role {
   ADMIN
 }
 
+enum TaskType {
+  ASSIGNMENT
+  READING
+  EXAM
+  PRESENTATION
+  PROJECT
+  OTHER
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETE
+  SKIPPED
+}
+
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
   passwordHash String
   fullName     String
   role         Role     @default(STUDENT)
+  isActive     Boolean  @default(true)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  courses       Course[]   @relation("StudentCourses")
+  taughtCourses Course[]   @relation("InstructorCourses")
+  auditLogs     AuditLog[]
+
   @@map("users")
+}
+
+model Course {
+  id             String   @id @default(uuid())
+  code           String
+  title          String
+  instructorName String?
+  creditHours    Int?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Student who owns/enrolled this course entry.
+  userId String
+  user   User   @relation("StudentCourses", fields: [userId], references: [id], onDelete: Cascade)
+
+  // Optional link to the instructor account (powers the instructor dashboard).
+  instructorId String?
+  instructor   User?   @relation("InstructorCourses", fields: [instructorId], references: [id], onDelete: SetNull)
+
+  tasks Task[]
+
+  @@index([userId])
+  @@index([instructorId])
+  @@index([code])
+  @@map("courses")
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  title       String
+  type        TaskType   @default(ASSIGNMENT)
+  deadline    DateTime
+  effortHours Float      @default(1)
+  priority    Priority   @default(MEDIUM)
+  status      TaskStatus @default(NOT_STARTED)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+  @@index([deadline])
+  @@index([status])
+  @@map("tasks")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  action     String
+  targetType String?
+  targetId   String?
+  meta       Json?
+  createdAt  DateTime @default(now())
+
+  actorId String
+  actor   User   @relation(fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+  @@map("audit_logs")
 }

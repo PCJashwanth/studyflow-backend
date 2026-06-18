@@ -1,12 +1,7 @@
 import { prisma } from '../../lib/prisma.js'
 import { hashPassword, verifyPassword } from '../../lib/password.js'
 import { signToken } from '../../lib/jwt.js'
-
-function httpError(message, status) {
-  const err = new Error(message)
-  err.status = status
-  return err
-}
+import { httpError } from '../../lib/httpError.js'
 
 function publicUser(u) {
   return { id: u.id, fullName: u.fullName, email: u.email, role: u.role, createdAt: u.createdAt }
@@ -34,6 +29,8 @@ export async function login({ email, password }) {
 
   const ok = await verifyPassword(password, user.passwordHash)
   if (!ok) throw httpError('Invalid credentials', 401)
+
+  if (!user.isActive) throw httpError('Account is deactivated', 403)
 
   return withToken(user)
 }
