@@ -10,6 +10,7 @@ import studentRoutes from './modules/student/student.routes.js'
 import instructorRoutes from './modules/instructor/instructor.routes.js'
 import adminRoutes from './modules/admin/admin.routes.js'
 import { notFound, errorHandler } from './middleware/error.js'
+import { metricsMiddleware, metricsEndpoint } from './middleware/metrics.js'
 
 export function createApp() {
   const app = express()
@@ -20,12 +21,16 @@ export function createApp() {
   app.use(helmet())
   app.use(cors({ origin: allowedOrigins, credentials: true }))
   app.use(express.json())
+  app.use(metricsMiddleware)
   if (env.NODE_ENV !== 'test') app.use(morgan('dev'))
 
   // Health check (used by Render + UptimeRobot pinger)
   app.get('/health', (req, res) =>
     res.json({ status: 'ok', service: 'studyflow-backend', time: new Date().toISOString() })
   )
+
+  // Prometheus metrics endpoint
+  app.get('/metrics', metricsEndpoint)
 
   // Feature modules
   app.use('/api/auth', authRoutes)
