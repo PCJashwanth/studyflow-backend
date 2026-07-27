@@ -78,6 +78,7 @@ model Course {
   @@index([userId])
   @@index([instructorId])
   @@index([code])
+  @@index([userId, createdAt(sort: Desc)])
   @@map("courses")
 }
 
@@ -98,6 +99,7 @@ model Task {
   @@index([courseId])
   @@index([deadline])
   @@index([status])
+  @@index([courseId, deadline])
   @@map("tasks")
 }
 
