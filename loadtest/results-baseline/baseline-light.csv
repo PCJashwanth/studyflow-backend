@@ -1,0 +1,411 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1785152174997,20135,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1549,271,9,9,https://studyflow-assignment2-backend.onrender.com/api/auth/login,20132,0,57
+1785152195653,249,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1054,139,10,10,https://studyflow-frontend-hace.onrender.com/,249,0,104
+1785152196409,263,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251719,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,220,0,0
+1785152171998,24810,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,24810,0,66
+1785152177996,18812,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,18812,0,53
+1785152197313,77,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,77,0,49
+1785152197315,84,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,84,0,54
+1785152169047,28365,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,28364,0,258
+1785152186991,10515,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,10515,0,55
+1785152180996,16512,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,16512,0,52
+1785152183991,13517,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,13517,0,60
+1785152189994,7719,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,7718,0,48
+1785152197178,738,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,736,0,0
+1785152197896,69,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152197905,73,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,33,0,0
+1785152197918,74,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,74,0,48
+1785152192995,5022,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,5022,0,59
+1785152198014,71,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,71,0,44
+1785152198014,72,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,72,0,46
+1785152198015,74,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,74,0,45
+1785152195990,2216,POST /api/auth/login,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1549,271,10,10,https://studyflow-assignment2-backend.onrender.com/api/auth/login,2216,0,53
+1785152198219,71,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,71,0,42
+1785152198497,73,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251715,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152198524,79,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,79,0,51
+1785152198592,77,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251715,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,35,0,0
+1785152198595,73,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,32,0,0
+1785152198591,81,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,40,0,0
+1785152198713,78,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,78,0,52
+1785152198471,340,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,339,0,0
+1785152198484,341,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,338,0,0
+1785152198796,67,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251715,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,26,0,0
+1785152199110,72,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152199297,72,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251715,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152199077,554,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,553,0,0
+1785152199175,457,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,456,0,0
+1785152199175,530,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,529,0,0
+1785152198423,1290,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1207,0,0
+1785152199175,731,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,730,0,0
+1785152199689,519,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,519,0,0
+1785152200219,28,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152199365,907,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,906,0,0
+1785152199875,397,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,396,0,0
+1785152200753,52,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152199317,2099,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844153,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2029,0,0
+1785152199330,2430,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844155,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2347,0,0
+1785152201922,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152202265,33,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,33,0,0
+1785152202452,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251715,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152200138,2587,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2512,0,0
+1785152202803,44,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,33,0,0
+1785152200138,3042,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844161,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2967,0,0
+1785152203231,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152203684,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152203764,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152200413,3509,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3437,0,0
+1785152201312,2915,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2915,0,0
+1785152204220,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,32,0,0
+1785152200210,4114,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,4039,0,0
+1785152204429,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152204830,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152202998,1905,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1905,0,0
+1785152200778,4143,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,4072,0,0
+1785152204961,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152204308,1046,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1045,0,0
+1785152203353,2000,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1999,0,0
+1785152205366,40,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152200715,4716,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,4637,0,0
+1785152205427,25,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1058,139,10,10,https://studyflow-frontend-hace.onrender.com/,25,0,0
+1785152204768,739,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,739,0,0
+1785152205935,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152205958,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152200778,5248,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844155,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,5175,0,0
+1785152205508,551,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,551,0,0
+1785152206463,43,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251723,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152206533,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152204734,2066,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2016,0,0
+1785152207065,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152207305,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152205912,1502,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1502,0,0
+1785152207835,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152205407,2684,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2640,0,0
+1785152205856,2568,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2548,0,0
+1785152208597,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152206503,2197,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2197,0,0
+1785152207012,1700,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1700,0,0
+1785152205860,2935,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2889,0,0
+1785152208930,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152207609,1399,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1399,0,0
+1785152209132,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152209297,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152209463,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152206010,3588,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3541,0,0
+1785152209829,38,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152208375,1525,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1525,0,0
+1785152206565,3350,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844158,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3336,0,0
+1785152210102,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152210421,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152210635,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152207920,2776,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2729,0,0
+1785152210956,44,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,37,0,0
+1785152211202,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152209217,2481,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2435,0,0
+1785152211735,38,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152210007,1905,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1905,0,0
+1785152209674,2238,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2238,0,0
+1785152210373,1540,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1540,0,0
+1785152209514,2484,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2437,0,0
+1785152212202,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152209205,3293,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844154,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3245,0,0
+1785152212502,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152212735,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152210403,2400,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2353,0,0
+1785152211176,1630,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1630,0,0
+1785152213002,28,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152212279,767,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,767,0,0
+1785152211504,1561,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1561,0,0
+1785152213034,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152213308,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152213536,38,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152213843,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152212418,1575,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1529,0,0
+1785152214495,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152212416,2280,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2234,0,0
+1785152213278,1762,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1761,0,0
+1785152213581,1462,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1462,0,0
+1785152212418,2628,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844163,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2621,0,0
+1785152215027,44,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,36,0,0
+1785152214077,1129,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1128,0,0
+1785152215201,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152215550,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152215733,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,27,0,0
+1785152213566,2248,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844157,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2237,0,0
+1785152216085,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,36,0,0
+1785152213308,2988,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2942,0,0
+1785152216319,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152214387,2117,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2116,0,0
+1785152213552,2955,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844155,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2908,0,0
+1785152216801,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152216274,576,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,576,0,0
+1785152215577,1279,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1279,0,0
+1785152216855,40,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152217012,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152217335,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152215545,1955,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1908,0,0
+1785152217543,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152216631,1214,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1214,0,0
+1785152215545,2352,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2305,0,0
+1785152218006,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152218403,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152215710,2787,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2740,0,0
+1785152218534,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,27,0,0
+1785152218935,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152218998,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152217400,1808,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1808,0,0
+1785152217010,2283,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2235,0,0
+1785152217878,1426,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1426,0,0
+1785152219530,34,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,26,0,0
+1785152219795,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152217356,2636,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844148,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2590,0,0
+1785152220330,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,35,0,0
+1785152219077,1323,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1323,0,0
+1785152218082,2325,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2325,0,0
+1785152217362,3133,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3087,0,0
+1785152220498,24,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,23,0,0
+1785152220070,814,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,814,0,0
+1785152219482,1402,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1402,0,0
+1785152218351,2542,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2533,0,0
+1785152221001,28,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152221027,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152221399,28,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152221535,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152219713,2081,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2037,0,0
+1785152221933,40,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,32,0,0
+1785152222296,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152220874,1632,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1632,0,0
+1785152219808,2786,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2738,0,0
+1785152222827,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,35,0,0
+1785152220905,2107,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2091,0,0
+1785152223095,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152222077,1137,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1137,0,0
+1785152220913,2386,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2341,0,0
+1785152222479,916,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,916,0,0
+1785152221568,1934,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1934,0,0
+1785152223518,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152223627,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152223805,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152224050,38,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152224332,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152221390,3206,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3158,0,0
+1785152221390,3705,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3658,0,0
+1785152225102,25,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,25,0,0
+1785152223374,2155,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2155,0,0
+1785152223010,2584,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2537,0,0
+1785152224168,1440,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1440,0,0
+1785152225598,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152225628,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152224873,833,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,833,0,0
+1785152224594,1318,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1318,0,0
+1785152226100,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152226131,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152223900,2494,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2481,0,0
+1785152226635,116,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,85,0,0
+1785152226900,56,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,56,0,0
+1785152224008,3015,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2948,0,0
+1785152226170,1269,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1269,0,0
+1785152223715,3753,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844151,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3720,0,0
+1785152227461,52,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,49,0,0
+1785152227529,37,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,36,0,0
+1785152227974,60,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,60,0,0
+1785152228071,80,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,56,0,0
+1785152226035,2493,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844165,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2488,0,0
+1785152228540,95,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,83,0,0
+1785152229031,69,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,69,0,0
+1785152226212,2934,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2855,0,0
+1785152226114,3519,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844144,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3505,0,0
+1785152229606,75,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,67,0,0
+1785152229649,35,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,35,0,0
+1785152228657,1048,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1048,0,0
+1785152227255,2460,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2460,0,0
+1785152226673,3046,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,3042,0,0
+1785152228019,1700,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1700,0,0
+1785152226415,3433,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3354,0,0
+1785152230139,47,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,47,0,0
+1785152229141,1069,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1069,0,0
+1785152230190,62,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,56,0,0
+1785152227942,2401,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2319,0,0
+1785152230353,33,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,33,0,0
+1785152230187,402,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,402,0,0
+1785152230692,57,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152230849,69,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,69,0,0
+1785152230891,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152230210,1017,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844172,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,999,0,0
+1785152231424,88,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152231733,52,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,52,0,0
+1785152230220,1710,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1665,0,0
+1785152232289,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,35,0,0
+1785152232436,99,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,99,0,0
+1785152230224,2377,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2356,0,0
+1785152230758,1846,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1846,0,0
+1785152233041,82,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,73,0,0
+1785152230224,2907,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2842,0,0
+1785152233107,47,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,47,0,0
+1785152232014,1605,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1605,0,0
+1785152231433,2187,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2187,0,0
+1785152231254,2367,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2367,0,134
+1785152230715,2909,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2904,0,0
+1785152233636,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152233659,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,32,0,0
+1785152232836,1214,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1214,0,51
+1785152231095,2981,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2948,0,0
+1785152233629,516,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,516,0,0
+1785152234130,33,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,33,0,0
+1785152234168,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,33,0,0
+1785152233110,1486,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1456,0,0
+1785152234582,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152234669,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,27,0,0
+1785152234202,593,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,593,0,0
+1785152235101,34,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,34,0,0
+1785152235118,70,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,66,0,0
+1785152235640,80,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,75,0,0
+1785152234126,1747,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1626,0,0
+1785152234120,2133,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844158,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2126,0,0
+1785152236378,34,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,33,0,0
+1785152236759,50,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,50,0,0
+1785152234711,2098,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2098,0,0
+1785152234125,2802,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844148,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2764,0,0
+1785152236915,56,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,53,0,0
+1785152237314,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251731,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,32,0,0
+1785152237433,32,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,32,0,0
+1785152234557,3071,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2989,0,0
+1785152235694,2020,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2020,0,0
+1785152234651,3180,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3102,0,0
+1785152236227,1604,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1604,0,0
+1785152235211,2789,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2786,0,0
+1785152237970,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152238134,84,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,84,0,0
+1785152238337,66,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,66,0,0
+1785152235296,3163,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844164,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3113,0,0
+1785152237858,643,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,643,0,0
+1785152237476,1029,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1029,0,0
+1785152238724,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152238909,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152238965,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152238512,702,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,702,0,0
+1785152237314,2040,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1937,0,0
+1785152239495,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152238219,1589,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844165,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1578,0,0
+1785152239860,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152240314,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152240392,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152238506,2091,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2044,0,0
+1785152240849,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152238337,2679,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2664,0,0
+1785152239265,1840,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1840,0,0
+1785152241098,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152241522,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152239452,2158,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2157,0,49
+1785152239007,2605,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844164,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2594,0,0
+1785152241629,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,27,0,0
+1785152242055,40,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,33,0,0
+1785152242117,24,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,24,0,0
+1785152240040,2166,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2164,0,52
+1785152239007,3289,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844144,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3240,0,0
+1785152240935,1576,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1575,0,0
+1785152241392,1120,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1119,0,0
+1785152239720,2793,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844171,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2781,0,0
+1785152242647,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152242168,639,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,639,0,49
+1785152242801,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152243017,25,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,25,0,0
+1785152243335,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152243546,93,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,86,0,0
+1785152241608,2031,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1938,0,0
+1785152242600,1304,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1304,0,0
+1785152242115,1869,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844138,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1773,0,0
+1785152244145,31,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,31,0,0
+1785152244490,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152242712,1862,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844154,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1789,0,0
+1785152244682,78,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,67,0,0
+1785152245023,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152245077,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152243017,2277,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2230,0,0
+1785152244145,1358,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1358,0,0
+1785152243189,2322,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2322,0,0
+1785152243017,2599,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2543,0,0
+1785152245610,46,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152243878,1933,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1933,0,0
+1785152245800,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152246122,28,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,28,0,0
+1785152243309,3014,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2937,0,0
+1785152246328,46,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,39,0,0
+1785152245266,1357,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1357,0,0
+1785152245565,1059,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1058,0,0
+1785152244410,2217,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2212,0,0
+1785152246654,40,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152246161,544,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,544,0,0
+1785152246829,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152247132,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152247362,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,29,0,0
+1785152246014,1676,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1660,0,0
+1785152247664,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152246880,1132,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1131,0,0
+1785152246009,2006,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844169,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1990,0,0
+1785152248196,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152248521,39,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,39,0,0
+1785152248728,63,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,59,0,0
+1785152246315,2783,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2757,0,0
+1785152249066,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152247200,2197,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2197,0,48
+1785152247129,2366,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2318,0,0
+1785152249601,27,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,27,0,0
+1785152249998,32,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,32,0,0
+1785152250133,47,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152247129,3081,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3018,0,0
+1785152247904,2502,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2498,0,0
+1785152248211,2202,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2202,0,53
+1785152247211,3204,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844163,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3195,0,0
+1785152250538,41,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-3,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152249609,1096,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1096,0,0
+1785152249292,1413,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1413,0,0
+1785152250714,49,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,49,0,0
+1785152250921,41,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,41,0,0
+1785152248514,2511,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844163,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2501,0,0
+1785152250682,414,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,414,0,0
+1785152251269,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-2,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,27,0,0
+1785152251466,55,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-4,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,43,0,0
+1785152251531,33,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,33,0,0
+1785152251083,730,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,730,0,0
+1785152249903,2195,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1946,0,0
+1785152252070,37,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,31,0,0
+1785152252601,29,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,29,0,0
+1785152250912,1886,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844147,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,1839,0,0
+1785152253136,49,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-6,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,46,0,0
+1785152250914,2366,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844146,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2288,0,0
+1785152253303,30,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,30,0,0
+1785152251210,2563,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844137,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,2489,0,50
+1785152253782,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152253839,35,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-5,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152252022,1882,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1882,0,0
+1785152254280,39,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,39,0,0
+1785152251810,2509,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2509,0,0
+1785152254315,64,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-7,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,59,0,0
+1785152251210,3247,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844140,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3164,0,0
+1785152254824,42,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-8,true,,251716,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,34,0,0
+1785152254963,26,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,26,0,0
+1785152253691,1320,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1320,0,0
+1785152251601,3418,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844174,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3399,0,0
+1785152254377,1121,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,1121,0,0
+1785152252613,2893,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,10,10,https://studyflow-assignment2-backend.onrender.com/api/courses,2893,0,0
+1785152255495,39,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-10,true,,251724,163,10,10,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,30,0,0
+1785152255521,40,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,1059,139,10,10,https://studyflow-frontend-hace.onrender.com/,40,0,0
+1785152252319,3279,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-3,true,,844139,431,10,10,https://studyflow-assignment2-backend.onrender.com/api/tasks,3230,0,0
+1785152254885,720,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,14189,433,9,9,https://studyflow-assignment2-backend.onrender.com/api/courses,718,0,0
+1785152256066,36,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-1,true,,251716,163,9,9,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,28,0,0
+1785152254409,1992,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-4,true,,844139,431,9,9,https://studyflow-assignment2-backend.onrender.com/api/tasks,1979,0,0
+1785152255372,1336,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,14189,433,8,8,https://studyflow-assignment2-backend.onrender.com/api/courses,1336,0,0
+1785152254824,1893,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-2,true,,844163,431,8,8,https://studyflow-assignment2-backend.onrender.com/api/tasks,1875,0,0
+1785152256608,814,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,14189,433,7,7,https://studyflow-assignment2-backend.onrender.com/api/courses,814,0,0
+1785152256039,1384,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,14189,433,7,7,https://studyflow-assignment2-backend.onrender.com/api/courses,1384,0,43
+1785152255517,2023,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-6,true,,844146,431,7,7,https://studyflow-assignment2-backend.onrender.com/api/tasks,1830,0,0
+1785152256004,2310,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-5,true,,844146,431,6,6,https://studyflow-assignment2-backend.onrender.com/api/tasks,2298,0,0
+1785152256012,3091,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844146,431,5,5,https://studyflow-assignment2-backend.onrender.com/api/tasks,2999,0,48
+1785152256105,3430,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-7,true,,844139,431,5,5,https://studyflow-assignment2-backend.onrender.com/api/tasks,3425,0,0
+1785152259609,86,GET index.html (frontend entry),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,1059,139,4,4,https://studyflow-frontend-hace.onrender.com/,86,0,54
+1785152257214,2690,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-8,true,,844139,431,4,4,https://studyflow-assignment2-backend.onrender.com/api/tasks,2642,0,0
+1785152260198,80,GET main JS bundle,200,OK,Light Load - 10 users / 30s ramp 1-9,true,,251724,163,3,3,https://studyflow-frontend-hace.onrender.com/assets/index-CYlsibpx.js,37,0,0
+1785152257928,2828,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-1,true,,844139,431,3,3,https://studyflow-assignment2-backend.onrender.com/api/tasks,2823,0,0
+1785152257929,3012,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-10,true,,844146,431,2,2,https://studyflow-assignment2-backend.onrender.com/api/tasks,2925,0,0
+1785152260783,525,GET /api/courses (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,14189,433,1,1,https://studyflow-assignment2-backend.onrender.com/api/courses,525,0,0
+1785152261814,1007,GET /api/tasks (list),200,OK,Light Load - 10 users / 30s ramp 1-9,true,,844138,431,1,1,https://studyflow-assignment2-backend.onrender.com/api/tasks,985,0,0
