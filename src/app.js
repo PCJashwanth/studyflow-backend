@@ -9,6 +9,8 @@ import taskRoutes from './modules/tasks/tasks.routes.js'
 import studentRoutes from './modules/student/student.routes.js'
 import instructorRoutes from './modules/instructor/instructor.routes.js'
 import adminRoutes from './modules/admin/admin.routes.js'
+import settingsRoutes from './modules/settings/settings.routes.js'
+import exportRoutes from './modules/export/export.routes.js'
 import { notFound, errorHandler } from './middleware/error.js'
 
 export function createApp() {
@@ -34,6 +36,8 @@ export function createApp() {
   app.use('/api/student', studentRoutes)
   app.use('/api/instructor', instructorRoutes)
   app.use('/api/admin', adminRoutes)
+  app.use('/api/settings', settingsRoutes)
+  app.use('/api/export', exportRoutes)
 
   // 404 + central error handler (must be last)
   app.use(notFound)
