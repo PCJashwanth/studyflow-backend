@@ -2,6 +2,43 @@ import { prisma } from '../../lib/prisma.js'
 
 const OPEN = ['NOT_STARTED', 'IN_PROGRESS'] // incomplete statuses
 
+const DEFAULT_PREFERENCES = {
+  availabilityGrid: null,
+  maxStudyHours: 6,
+  focusTime: 'Evening',
+  minBreakMins: 15,
+  notifyBeforeBlocks: true,
+}
+
+// Returns the student's saved preferences, or sensible defaults if none yet.
+export async function getPreferences(userId) {
+  const prefs = await prisma.studentPreferences.findUnique({ where: { userId } })
+  if (!prefs) return DEFAULT_PREFERENCES
+  return {
+    availabilityGrid: prefs.availabilityGrid,
+    maxStudyHours: prefs.maxStudyHours,
+    focusTime: prefs.focusTime,
+    minBreakMins: prefs.minBreakMins,
+    notifyBeforeBlocks: prefs.notifyBeforeBlocks,
+  }
+}
+
+// Upsert: create the row on first save, update it thereafter.
+export async function savePreferences(userId, data) {
+  const prefs = await prisma.studentPreferences.upsert({
+    where: { userId },
+    create: { userId, ...data },
+    update: { ...data },
+  })
+  return {
+    availabilityGrid: prefs.availabilityGrid,
+    maxStudyHours: prefs.maxStudyHours,
+    focusTime: prefs.focusTime,
+    minBreakMins: prefs.minBreakMins,
+    notifyBeforeBlocks: prefs.notifyBeforeBlocks,
+  }
+}
+
 export async function getDashboard(userId) {
   const now = new Date()
   const weekAhead = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)

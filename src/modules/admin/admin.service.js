@@ -16,6 +16,48 @@ function writeAudit(actorId, action, targetId, meta) {
   })
 }
 
+// ---- Course catalog ----
+
+// List catalog courses, with a derived enrollment count per code (how many
+// students have that course code in their personal course list).
+export async function listCourses() {
+  const [courses, grouped] = await Promise.all([
+    prisma.catalogCourse.findMany({ orderBy: { createdAt: 'desc' } }),
+    prisma.course.groupBy({ by: ['code'], _count: { _all: true } }),
+  ])
+  const countByCode = Object.fromEntries(grouped.map((g) => [g.code, g._count._all]))
+  return courses.map((c) => ({ ...c, students: countByCode[c.code] || 0 }))
+}
+
+export async function createCourse(actorId, data) {
+  const existing = await prisma.catalogCourse.findUnique({ where: { code: data.code } })
+  if (existing) throw httpError('A course with this code already exists', 409)
+  const course = await prisma.catalogCourse.create({ data })
+  await prisma.auditLog.create({
+    data: { actorId, action: 'COURSE_CREATED', targetType: 'Course', targetId: course.id, meta: { code: course.code } },
+  })
+  return { ...course, students: 0 }
+}
+
+export async function updateCourse(actorId, id, data) {
+  const existing = await prisma.catalogCourse.findUnique({ where: { id } })
+  if (!existing) throw httpError('Course not found', 404)
+  const course = await prisma.catalogCourse.update({ where: { id }, data })
+  if (data.status && data.status !== existing.status) {
+    await prisma.auditLog.create({
+      data: {
+        actorId,
+        action: data.status === 'ARCHIVED' ? 'COURSE_ARCHIVED' : 'COURSE_RESTORED',
+        targetType: 'Course',
+        targetId: id,
+        meta: { code: course.code },
+      },
+    })
+  }
+  const count = await prisma.course.count({ where: { code: course.code } })
+  return { ...course, students: count }
+}
+
 export function listUsers({ role, isActive } = {}) {
   const where = {}
   if (role) where.role = role

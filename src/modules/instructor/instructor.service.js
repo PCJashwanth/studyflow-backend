@@ -99,3 +99,108 @@ export async function getDashboard(instructorId) {
     deadlinePressure,
   }
 }
+
+// Loads this instructor's courses' tasks, grouped by course code.
+async function courseTasks(instructorId) {
+  const courses = await prisma.course.findMany({
+    where: { instructorId },
+    select: {
+      code: true,
+      title: true,
+      tasks: { select: { title: true, deadline: true, effortHours: true, status: true } },
+    },
+  })
+  const byCode = new Map()
+  for (const c of courses) {
+    if (!byCode.has(c.code)) byCode.set(c.code, { code: c.code, title: c.title, tasks: [] })
+    byCode.get(c.code).tasks.push(...c.tasks)
+  }
+  return byCode
+}
+
+// Per-course assignment table: anonymized completion aggregated across students.
+export async function getAssignments(instructorId) {
+  const byCode = await courseTasks(instructorId)
+  const now = new Date()
+  const byCourse = {}
+
+  for (const group of byCode.values()) {
+    const assignmentMap = new Map()
+    for (const t of group.tasks) {
+      const a = assignmentMap.get(t.title) || {
+        name: t.title,
+        deadline: t.deadline,
+        hours: t.effortHours,
+        total: 0,
+        complete: 0,
+      }
+      a.total++
+      if (t.status === 'COMPLETE') a.complete++
+      if (new Date(t.deadline) < new Date(a.deadline)) a.deadline = t.deadline
+      assignmentMap.set(t.title, a)
+    }
+
+    const rows = [...assignmentMap.values()]
+      .sort((x, y) => new Date(x.deadline) - new Date(y.deadline))
+      .map((a, i) => {
+        const avgCompletion = a.total ? Math.round((a.complete / a.total) * 100) : null
+        const past = new Date(a.deadline) < now
+        const soon = !past && new Date(a.deadline) - now < 7 * 24 * 60 * 60 * 1000
+        return {
+          id: `${group.code}-${i}`,
+          name: a.name,
+          due: new Date(a.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          hours: a.hours,
+          avgCompletion,
+          onTime: null, // needs completion timestamps (CompletionLog) — future
+          status: past ? 'Closed' : 'Open',
+          warning: soon && avgCompletion !== null && avgCompletion < 50
+            ? 'Low completion ahead of deadline'
+            : null,
+        }
+      })
+
+    byCourse[group.code] = { note: `${rows.length} assessments · anonymized aggregate`, rows }
+  }
+
+  return { courses: [...byCode.keys()], byCourse }
+}
+
+// Per-course weekly study-load bars (sum of task effort bucketed by deadline week).
+export async function getWorkload(instructorId) {
+  const byCode = await courseTasks(instructorId)
+  const byCourse = {}
+
+  for (const group of byCode.values()) {
+    const weekMap = new Map()
+    for (const t of group.tasks) {
+      const wk = weekStart(new Date(t.deadline))
+      weekMap.set(wk, (weekMap.get(wk) || 0) + t.effortHours)
+    }
+    const sorted = [...weekMap.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+    const weeks = sorted.map(([, hours], i) => ({
+      label: `W${i + 1}`,
+      hours: round1(hours),
+      marker: null,
+      peak: false,
+    }))
+    const hoursList = weeks.map((w) => w.hours)
+    const peak = hoursList.length ? Math.max(...hoursList) : 0
+    weeks.forEach((w) => { if (w.hours === peak) w.peak = true })
+    const termAverage = weeks.length ? round1(hoursList.reduce((a, b) => a + b, 0) / weeks.length) : 0
+
+    byCourse[group.code] = {
+      weeks,
+      heaviestWeek: weeks.find((w) => w.peak)?.label || '—',
+      heaviestNote: 'Heaviest week',
+      peakLoad: peak,
+      termAverage,
+      recommendedMax: round1(peak * 0.8) || 10,
+      insight: peak > 0
+        ? `Peak load of ${peak}h — consider spreading deadlines around ${weeks.find((w) => w.peak)?.label}.`
+        : 'No workload data yet.',
+    }
+  }
+
+  return { courses: [...byCode.keys()], byCourse }
+}

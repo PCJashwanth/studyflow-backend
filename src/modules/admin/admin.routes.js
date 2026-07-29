@@ -1,6 +1,11 @@
 import { Router } from 'express'
 import * as ctrl from './admin.controller.js'
-import { updateRoleSchema, updateStatusSchema } from './admin.schema.js'
+import {
+  updateRoleSchema,
+  updateStatusSchema,
+  createCourseSchema,
+  updateCourseSchema,
+} from './admin.schema.js'
 import { authenticate } from '../../middleware/auth.js'
 import { requireRole } from '../../middleware/requireRole.js'
 import { validate } from '../../middleware/validate.js'
@@ -15,5 +20,9 @@ router.get('/users', asyncHandler(ctrl.listUsers))
 router.patch('/users/:id/role', validate(updateRoleSchema), asyncHandler(ctrl.updateRole))
 router.patch('/users/:id/status', validate(updateStatusSchema), asyncHandler(ctrl.setStatus))
 router.get('/audit-logs', asyncHandler(ctrl.auditLogs))
+
+router.get('/courses', asyncHandler(ctrl.listCourses))
+router.post('/courses', validate(createCourseSchema), asyncHandler(ctrl.createCourse))
+router.patch('/courses/:id', validate(updateCourseSchema), asyncHandler(ctrl.updateCourse))
 
 export default router

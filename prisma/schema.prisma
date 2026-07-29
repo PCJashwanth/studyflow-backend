@@ -39,6 +39,11 @@ enum TaskStatus {
   SKIPPED
 }
 
+enum CourseStatus {
+  ACTIVE
+  ARCHIVED
+}
+
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
@@ -49,11 +54,27 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  courses       Course[]   @relation("StudentCourses")
-  taughtCourses Course[]   @relation("InstructorCourses")
+  courses       Course[]            @relation("StudentCourses")
+  taughtCourses Course[]            @relation("InstructorCourses")
   auditLogs     AuditLog[]
+  preferences   StudentPreferences?
 
   @@map("users")
+}
+
+model StudentPreferences {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  availabilityGrid   Json? // 8 time-slots x 7 days of "free|class|work|blocked"
+  maxStudyHours      Int      @default(6)
+  focusTime          String   @default("Evening") // Morning | Evening | Late night
+  minBreakMins       Int      @default(15)
+  notifyBeforeBlocks Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("student_preferences")
 }
 
 model Course {
@@ -99,6 +120,21 @@ model Task {
   @@index([deadline])
   @@index([status])
   @@map("tasks")
+}
+
+// Institution course catalog, managed by admins. Separate from a student's
+// personal Course entries; enrollment counts are derived from those by code.
+model CatalogCourse {
+  id             String       @id @default(uuid())
+  code           String       @unique
+  title          String
+  instructorName String?
+  term           String       @default("Fall 2026")
+  status         CourseStatus @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@map("catalog_courses")
 }
 
 model AuditLog {

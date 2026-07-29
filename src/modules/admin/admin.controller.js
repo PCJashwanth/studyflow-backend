@@ -24,3 +24,15 @@ export async function auditLogs(req, res) {
 export async function dashboard(req, res) {
   res.json(await service.getDashboard())
 }
+
+export async function listCourses(req, res) {
+  res.json({ courses: await service.listCourses() })
+}
+
+export async function createCourse(req, res) {
+  res.status(201).json({ course: await service.createCourse(req.user.id, req.body) })
+}
+
+export async function updateCourse(req, res) {
+  res.json({ course: await service.updateCourse(req.user.id, req.params.id, req.body) })
+}

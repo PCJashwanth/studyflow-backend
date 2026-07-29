@@ -8,5 +8,7 @@ const router = Router()
 
 router.use(authenticate, requireRole('INSTRUCTOR'))
 router.get('/dashboard', asyncHandler(ctrl.dashboard))
+router.get('/assignments', asyncHandler(ctrl.assignments))
+router.get('/workload', asyncHandler(ctrl.workload))
 
 export default router

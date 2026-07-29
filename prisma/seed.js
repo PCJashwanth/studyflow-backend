@@ -78,6 +78,17 @@ async function main() {
     s++
   }
 
+  // Catalog courses (admin-managed). Codes match the student course entries
+  // so enrollment counts show up on the admin Courses screen.
+  const catalogCourses = [
+    { code: 'CSCI 5709', title: 'Adv. Topics in Web Development', instructorName: 'Demo Instructor', term: 'Summer 2026', status: 'ACTIVE' },
+    { code: 'CSCI 6612', title: 'Visual Analytics', instructorName: 'Demo Instructor', term: 'Summer 2026', status: 'ACTIVE' },
+    { code: 'CSCI 5408', title: 'Data Management & Warehousing', instructorName: 'Prof. K. Brown', term: 'Winter 2026', status: 'ARCHIVED' },
+  ]
+  for (const c of catalogCourses) {
+    await prisma.catalogCourse.upsert({ where: { code: c.code }, update: {}, create: c })
+  }
+
   console.log('Seeded users (password: ' + DEMO_PASSWORD + '):')
   console.log('  admin@studyflow.dev (ADMIN)')
   console.log('  instructor@studyflow.dev (INSTRUCTOR)')
