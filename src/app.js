@@ -11,6 +11,7 @@ import instructorRoutes from './modules/instructor/instructor.routes.js'
 import adminRoutes from './modules/admin/admin.routes.js'
 import settingsRoutes from './modules/settings/settings.routes.js'
 import exportRoutes from './modules/export/export.routes.js'
+import notificationRoutes from './modules/notifications/notifications.routes.js'
 import { notFound, errorHandler } from './middleware/error.js'
 
 export function createApp() {
@@ -38,6 +39,7 @@ export function createApp() {
   app.use('/api/admin', adminRoutes)
   app.use('/api/settings', settingsRoutes)
   app.use('/api/export', exportRoutes)
+  app.use('/api/notifications', notificationRoutes)
 
   // 404 + central error handler (must be last)
   app.use(notFound)
