@@ -5,6 +5,7 @@ import {
   updateStatusSchema,
   createCourseSchema,
   updateCourseSchema,
+  decideRequestSchema,
 } from './admin.schema.js'
 import { authenticate } from '../../middleware/auth.js'
 import { requireRole } from '../../middleware/requireRole.js'
@@ -24,5 +25,8 @@ router.get('/audit-logs', asyncHandler(ctrl.auditLogs))
 router.get('/courses', asyncHandler(ctrl.listCourses))
 router.post('/courses', validate(createCourseSchema), asyncHandler(ctrl.createCourse))
 router.patch('/courses/:id', validate(updateCourseSchema), asyncHandler(ctrl.updateCourse))
+
+router.get('/course-requests', asyncHandler(ctrl.listCourseRequests))
+router.patch('/course-requests/:id', validate(decideRequestSchema), asyncHandler(ctrl.decideCourseRequest))
 
 export default router

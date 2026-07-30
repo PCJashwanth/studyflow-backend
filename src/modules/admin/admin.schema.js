@@ -22,3 +22,7 @@ export const updateCourseSchema = z.object({
   status: z.enum(['ACTIVE', 'ARCHIVED']).optional(),
 })
 
+export const decideRequestSchema = z.object({
+  decision: z.enum(['APPROVED', 'REJECTED']),
+})
+

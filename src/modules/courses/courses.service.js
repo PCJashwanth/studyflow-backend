@@ -18,8 +18,35 @@ export async function getCourse(userId, id) {
   return course
 }
 
-export function createCourse(userId, data) {
-  return prisma.course.create({ data: { ...data, userId } })
+// Enroll = pick an ACTIVE catalog course by code. No free-typing.
+export async function createCourse(userId, { code }) {
+  const catalog = await prisma.catalogCourse.findFirst({ where: { code, status: 'ACTIVE' } })
+  if (!catalog) throw httpError('That course is not in the catalog — please request it.', 400)
+  const existing = await prisma.course.findFirst({ where: { userId, code: catalog.code } })
+  if (existing) throw httpError('You are already enrolled in this course', 409)
+  return prisma.course.create({
+    data: { userId, code: catalog.code, title: catalog.title, instructorName: catalog.instructorName },
+  })
+}
+
+// The active catalog a student can enroll from.
+export function listCatalog() {
+  return prisma.catalogCourse.findMany({
+    where: { status: 'ACTIVE' },
+    orderBy: { code: 'asc' },
+    select: { id: true, code: true, title: true, instructorName: true },
+  })
+}
+
+export function createRequest(userId, data) {
+  return prisma.courseRequest.create({ data: { ...data, studentId: userId } })
+}
+
+export function listRequests(userId) {
+  return prisma.courseRequest.findMany({
+    where: { studentId: userId },
+    orderBy: { createdAt: 'desc' },
+  })
 }
 
 export async function updateCourse(userId, id, data) {

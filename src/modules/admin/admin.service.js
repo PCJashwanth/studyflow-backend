@@ -58,6 +58,64 @@ export async function updateCourse(actorId, id, data) {
   return { ...course, students: count }
 }
 
+// ---- Course requests ----
+
+const requestWithStudent = {
+  include: { student: { select: { id: true, fullName: true, email: true } } },
+}
+
+export function listCourseRequests() {
+  return prisma.courseRequest.findMany({
+    orderBy: [{ status: 'asc' }, { createdAt: 'desc' }],
+    ...requestWithStudent,
+  })
+}
+
+// Approve: add the course to the catalog (if missing) and enroll the requester.
+export async function decideCourseRequest(actorId, id, decision) {
+  const request = await prisma.courseRequest.findUnique({ where: { id } })
+  if (!request) throw httpError('Request not found', 404)
+  if (request.status !== 'PENDING') throw httpError('This request has already been decided', 400)
+
+  if (decision === 'APPROVED') {
+    const catalog = await prisma.catalogCourse.upsert({
+      where: { code: request.code },
+      update: { status: 'ACTIVE' },
+      create: { code: request.code, title: request.title, instructorName: request.instructorName },
+    })
+    const already = await prisma.course.findFirst({
+      where: { userId: request.studentId, code: catalog.code },
+      select: { id: true },
+    })
+    if (!already) {
+      await prisma.course.create({
+        data: {
+          userId: request.studentId,
+          code: catalog.code,
+          title: catalog.title,
+          instructorName: catalog.instructorName,
+        },
+      })
+    }
+  }
+
+  const updated = await prisma.courseRequest.update({
+    where: { id },
+    data: { status: decision, decidedById: actorId },
+    ...requestWithStudent,
+  })
+  await prisma.auditLog.create({
+    data: {
+      actorId,
+      action: decision === 'APPROVED' ? 'COURSE_REQUEST_APPROVED' : 'COURSE_REQUEST_REJECTED',
+      targetType: 'CourseRequest',
+      targetId: id,
+      meta: { code: request.code },
+    },
+  })
+  return updated
+}
+
 export function listUsers({ role, isActive } = {}) {
   const where = {}
   if (role) where.role = role

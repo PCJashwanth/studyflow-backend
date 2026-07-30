@@ -36,3 +36,11 @@ export async function createCourse(req, res) {
 export async function updateCourse(req, res) {
   res.json({ course: await service.updateCourse(req.user.id, req.params.id, req.body) })
 }
+
+export async function listCourseRequests(req, res) {
+  res.json({ requests: await service.listCourseRequests() })
+}
+
+export async function decideCourseRequest(req, res) {
+  res.json({ request: await service.decideCourseRequest(req.user.id, req.params.id, req.body.decision) })
+}

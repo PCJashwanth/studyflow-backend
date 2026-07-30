@@ -44,6 +44,12 @@ enum CourseStatus {
   ARCHIVED
 }
 
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
@@ -55,12 +61,33 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  courses       Course[]            @relation("StudentCourses")
-  taughtCourses Course[]            @relation("InstructorCourses")
-  auditLogs     AuditLog[]
-  preferences   StudentPreferences?
+  courses        Course[]            @relation("StudentCourses")
+  taughtCourses  Course[]            @relation("InstructorCourses")
+  auditLogs      AuditLog[]
+  preferences    StudentPreferences?
+  courseRequests CourseRequest[]     @relation("StudentRequests")
 
   @@map("users")
+}
+
+// A student's request for the admin to add a course to the catalog.
+model CourseRequest {
+  id             String        @id @default(uuid())
+  code           String
+  title          String
+  instructorName String?
+  note           String?
+  status         RequestStatus @default(PENDING)
+  decidedById    String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  studentId String
+  student   User   @relation("StudentRequests", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([status])
+  @@map("course_requests")
 }
 
 model StudentPreferences {
