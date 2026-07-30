@@ -1,0 +1,23 @@
+name: Deadline reminders
+
+# Pokes the backend every 15 minutes so it can send due reminders.
+# Render's free tier sleeps after 15 min idle, so an in-app timer would stop
+# firing - this wakes it up from outside instead.
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send due reminders
+        run: |
+          if [ -z "${{ secrets.BACKEND_URL }}" ] || [ -z "${{ secrets.CRON_SECRET }}" ]; then
+            echo "Secrets not set yet — skipping."
+            exit 0
+          fi
+          curl -sS --fail-with-body --max-time 120 \
+            -X POST "${{ secrets.BACKEND_URL }}/api/notifications/dispatch" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}"
