@@ -1,5 +1,6 @@
 import { prisma } from '../../lib/prisma.js'
 import { httpError } from '../../lib/httpError.js'
+import { hashPassword } from '../../lib/password.js'
 
 const publicUserSelect = {
   id: true,
@@ -125,6 +126,48 @@ export function listUsers({ role, isActive } = {}) {
     select: publicUserSelect,
     orderBy: { createdAt: 'desc' },
   })
+}
+
+export async function createUser(adminId, { fullName, email, password, role }) {
+  const existing = await prisma.user.findUnique({ where: { email } })
+  if (existing) throw httpError('A user with this email already exists', 409)
+
+  const user = await prisma.user.create({
+    data: { fullName, email, role, passwordHash: await hashPassword(password) },
+    select: publicUserSelect,
+  })
+  await writeAudit(adminId, 'ACCOUNT_CREATED', user.id, { email, role })
+  return user
+}
+
+export async function updateUser(adminId, targetId, data) {
+  const user = await prisma.user.findUnique({ where: { id: targetId } })
+  if (!user) throw httpError('User not found', 404)
+
+  // Email is unique, so make sure it isn't already taken by somebody else.
+  if (data.email && data.email !== user.email) {
+    const taken = await prisma.user.findUnique({ where: { email: data.email } })
+    if (taken) throw httpError('A user with this email already exists', 409)
+  }
+
+  const updated = await prisma.user.update({
+    where: { id: targetId },
+    data,
+    select: publicUserSelect,
+  })
+
+  // Record only what actually changed, so the audit log stays readable.
+  const changed = {}
+  for (const key of ['fullName', 'email']) {
+    if (data[key] !== undefined && data[key] !== user[key]) {
+      changed[key] = { from: user[key], to: data[key] }
+    }
+  }
+  if (Object.keys(changed).length > 0) {
+    await writeAudit(adminId, 'ACCOUNT_UPDATED', targetId, changed)
+  }
+
+  return updated
 }
 
 export async function updateRole(adminId, targetId, role) {
