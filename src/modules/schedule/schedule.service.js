@@ -21,7 +21,7 @@ function toDates(weekStart, day, startHour, hours) {
   return { start, end }
 }
 
-async function buildContext(userId) {
+async function buildContext(userId, weekStart) {
   const [tasks, prefs] = await Promise.all([
     prisma.task.findMany({
       where: { course: { userId }, status: { in: OPEN } },
@@ -32,12 +32,16 @@ async function buildContext(userId) {
   ])
 
   const grid = Array.isArray(prefs?.availabilityGrid) ? prefs.availabilityGrid : null
+  const now = new Date()
   const freeSlots = []
   for (let s = 0; s < SLOT_HOURS.length; s++) {
     for (let d = 0; d < 7; d++) {
       // If the student saved a grid, honor it. Otherwise default to afternoons/evenings free.
       const isFree = grid ? grid[s]?.[d] === 'free' : SLOT_HOURS[s] >= 16
-      if (isFree) freeSlots.push({ day: d, startHour: SLOT_HOURS[s] })
+      if (!isFree) continue
+      // Never schedule into slots that have already passed.
+      if (toDates(weekStart, d, SLOT_HOURS[s], 1).start < now) continue
+      freeSlots.push({ day: d, startHour: SLOT_HOURS[s] })
     }
   }
 
@@ -135,8 +139,8 @@ function toRows(rawBlocks, ctx, weekStart, source) {
 
 // Produce the new set of block rows (AI first, rule-based fallback) — not persisted.
 async function planSchedule(weekStart, userId) {
-  const ctx = await buildContext(userId)
-  if (ctx.tasks.length === 0) return { source: 'RULE', rows: [] }
+  const ctx = await buildContext(userId, weekStart)
+  if (ctx.tasks.length === 0 || ctx.freeSlots.length === 0) return { source: 'RULE', rows: [] }
 
   let rows = []
   let source = 'RULE'
@@ -163,16 +167,36 @@ function persist(userId, weekStart, rows) {
   })
 }
 
+// The week the student's current schedule lives in (latest generated), else this week.
+async function latestWeekStart(userId) {
+  const latest = await prisma.scheduleBlock.findFirst({
+    where: { userId },
+    orderBy: { weekStart: 'desc' },
+    select: { weekStart: true },
+  })
+  return latest?.weekStart || mondayOf(new Date())
+}
+
 export async function generateSchedule(userId, weekStartInput) {
-  const weekStart = mondayOf(weekStartInput ? new Date(weekStartInput) : new Date())
-  const { source, rows } = await planSchedule(weekStart, userId)
-  const blocks = await persist(userId, weekStart, rows)
-  return { weekStart, source, blocks }
+  let weekStart = mondayOf(weekStartInput ? new Date(weekStartInput) : new Date())
+  let plan = await planSchedule(weekStart, userId)
+  // If the current week is already over (no future free slots), plan next week instead.
+  if (!weekStartInput && plan.rows.length === 0) {
+    const next = new Date(weekStart)
+    next.setUTCDate(next.getUTCDate() + 7)
+    const nextPlan = await planSchedule(next, userId)
+    if (nextPlan.rows.length > 0) {
+      weekStart = next
+      plan = nextPlan
+    }
+  }
+  const blocks = await persist(userId, weekStart, plan.rows)
+  return { weekStart, source: plan.source, blocks }
 }
 
 // Re-plan the week and return a diff (added / removed / kept) vs the current schedule.
 export async function rebalanceSchedule(userId, weekStartInput) {
-  const weekStart = mondayOf(weekStartInput ? new Date(weekStartInput) : new Date())
+  const weekStart = weekStartInput ? mondayOf(new Date(weekStartInput)) : await latestWeekStart(userId)
   const previous = await prisma.scheduleBlock.findMany({ where: { userId, weekStart } })
   const { source, rows } = await planSchedule(weekStart, userId)
 
@@ -194,7 +218,8 @@ export async function rebalanceSchedule(userId, weekStartInput) {
 }
 
 export async function getSchedule(userId, weekStartInput) {
-  const weekStart = mondayOf(weekStartInput ? new Date(weekStartInput) : new Date())
+  // No week specified → return the student's latest generated schedule.
+  const weekStart = weekStartInput ? mondayOf(new Date(weekStartInput)) : await latestWeekStart(userId)
   const blocks = await prisma.scheduleBlock.findMany({
     where: { userId, weekStart },
     orderBy: { start: 'asc' },
