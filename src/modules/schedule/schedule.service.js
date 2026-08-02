@@ -1,8 +1,11 @@
 import { prisma } from '../../lib/prisma.js'
 import { groqEnabled, groqChatJSON } from '../../integrations/groq.js'
+import { DEFAULT_AVAILABILITY } from '../student/student.service.js'
 
-const SLOT_HOURS = [8, 10, 12, 14, 16, 18, 20, 22] // the 8 daily 2h slots
 const OPEN = ['NOT_STARTED', 'IN_PROGRESS']
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const OVERNIGHT_HOURS = [0, 2, 4] // 00:00–06:00, used only for urgent deadlines
+const URGENT_MS = 2 * 24 * 60 * 60 * 1000 // deadline within 2 days = urgent
 
 // Monday 00:00 UTC of the week containing `d`.
 function mondayOf(d) {
@@ -21,6 +24,23 @@ function toDates(weekStart, day, startHour, hours) {
   return { start, end }
 }
 
+const parseHour = (s) => Math.max(0, Math.min(24, parseInt(String(s).split(':')[0], 10) || 0))
+
+// Split a day's free ranges into study slots of up to 2 hours.
+function slotsFromRanges(ranges) {
+  const slots = []
+  for (const r of ranges || []) {
+    let h = parseHour(r.start)
+    const end = parseHour(r.end)
+    while (end - h >= 1) {
+      const hours = Math.min(2, end - h)
+      slots.push({ startHour: h, hours })
+      h += hours
+    }
+  }
+  return slots
+}
+
 async function buildContext(userId, weekStart) {
   const [tasks, prefs] = await Promise.all([
     prisma.task.findMany({
@@ -31,23 +51,31 @@ async function buildContext(userId, weekStart) {
     prisma.studentPreferences.findUnique({ where: { userId } }),
   ])
 
-  const grid = Array.isArray(prefs?.availabilityGrid) ? prefs.availabilityGrid : null
+  const availability =
+    prefs?.availability && typeof prefs.availability === 'object' ? prefs.availability : DEFAULT_AVAILABILITY
   const now = new Date()
+
   const freeSlots = []
-  for (let s = 0; s < SLOT_HOURS.length; s++) {
-    for (let d = 0; d < 7; d++) {
-      // If the student saved a grid, honor it. Otherwise default to afternoons/evenings free.
-      const isFree = grid ? grid[s]?.[d] === 'free' : SLOT_HOURS[s] >= 16
-      if (!isFree) continue
-      // Never schedule into slots that have already passed.
-      if (toDates(weekStart, d, SLOT_HOURS[s], 1).start < now) continue
-      freeSlots.push({ day: d, startHour: SLOT_HOURS[s] })
+  for (let d = 0; d < 7; d++) {
+    for (const s of slotsFromRanges(availability[DAYS[d]])) {
+      if (toDates(weekStart, d, s.startHour, s.hours).start < now) continue // no past slots
+      freeSlots.push({ day: d, startHour: s.startHour, hours: s.hours })
+    }
+  }
+
+  // Overnight (00:00–06:00) — only offered for tasks with imminent deadlines.
+  const overnightSlots = []
+  for (let d = 0; d < 7; d++) {
+    for (const h of OVERNIGHT_HOURS) {
+      if (toDates(weekStart, d, h, 2).start < now) continue
+      overnightSlots.push({ day: d, startHour: h, hours: 2 })
     }
   }
 
   return {
     tasks,
     freeSlots,
+    overnightSlots,
     prefs: {
       maxStudyHours: prefs?.maxStudyHours ?? 6,
       focusTime: prefs?.focusTime ?? 'Evening',
@@ -56,15 +84,16 @@ async function buildContext(userId, weekStart) {
   }
 }
 
-// Ask Groq to allocate tasks into free slots. Returns raw block objects.
+// Ask Groq to allocate tasks into the student's free slots. Returns raw blocks.
 async function generateWithAI(ctx, weekStart) {
   const system =
     'You are StudyFlow, an academic study-planning assistant. You allocate a student\'s ' +
-    'outstanding tasks into their free time slots for one week. Respond with ONLY valid JSON.'
+    'outstanding tasks into their available time for one week. Respond with ONLY valid JSON.'
   const user = JSON.stringify({
     weekStartMonday: weekStart.toISOString().slice(0, 10),
     preferences: ctx.prefs,
     freeSlots: ctx.freeSlots,
+    overnightSlots: ctx.overnightSlots,
     tasks: ctx.tasks.map((t, i) => ({
       index: i,
       title: t.title,
@@ -74,16 +103,17 @@ async function generateWithAI(ctx, weekStart) {
       deadline: t.deadline.toISOString().slice(0, 10),
     })),
     outputSpec:
-      'Return {"blocks":[{"taskIndex":int,"day":0-6 (0=Mon),"startHour":int matching a freeSlot,' +
-      '"hours":1-2,"rationale":"short reason citing deadline/priority/focus time"}]}. ' +
-      'Only use provided freeSlots. Never exceed preferences.maxStudyHours per day. ' +
-      'Prioritize earlier deadlines and higher priority. Prefer the preferred focus time.',
+      'Return {"blocks":[{"taskIndex":int,"day":0-6 (0=Mon),"startHour":int matching a slot,' +
+      '"hours":1-2,"rationale":"short reason"}]}. Prefer freeSlots and do NOT exceed ' +
+      'preferences.maxStudyHours per day using them. Use overnightSlots (00:00–06:00) ONLY for a ' +
+      'task whose deadline is within ~2 days that cannot otherwise fit — overnight is a last resort ' +
+      'and may exceed the daily max. Prioritize earlier deadlines and higher priority.',
   })
   const out = await groqChatJSON(system, user)
   return Array.isArray(out.blocks) ? out.blocks : []
 }
 
-// Deterministic fallback: greedily fill free slots by deadline order.
+// Deterministic fallback: fill free slots by deadline order (overnight handled separately).
 function generateWithRules(ctx) {
   const remaining = ctx.tasks.map((t, i) => ({ index: i, left: t.effortHours, deadline: t.deadline }))
   const perDay = {}
@@ -91,8 +121,8 @@ function generateWithRules(ctx) {
   for (const slot of [...ctx.freeSlots].sort((a, b) => a.day - b.day || a.startHour - b.startHour)) {
     const cand = remaining.find((r) => r.left > 0)
     if (!cand) break
-    if ((perDay[slot.day] || 0) + 2 > ctx.prefs.maxStudyHours) continue
-    const hours = Math.min(2, cand.left)
+    if ((perDay[slot.day] || 0) + slot.hours > ctx.prefs.maxStudyHours) continue
+    const hours = Math.min(slot.hours, cand.left)
     cand.left -= hours
     perDay[slot.day] = (perDay[slot.day] || 0) + hours
     raw.push({
@@ -100,26 +130,76 @@ function generateWithRules(ctx) {
       day: slot.day,
       startHour: slot.startHour,
       hours,
-      rationale: `Placed in a free slot before the ${cand.deadline.toISOString().slice(0, 10)} deadline.`,
+      rationale: `Placed before the ${cand.deadline.toISOString().slice(0, 10)} deadline.`,
     })
   }
   return raw
 }
 
-// Validate raw blocks against tasks/slots/prefs and turn them into DB rows.
+const dateStr = (d) => new Date(d).toISOString().slice(0, 10)
+
+// After the main plan, top up urgent tasks (deadline within 2 days) that still have
+// uncovered effort by filling unused overnight slots on/before the deadline date.
+function addUrgentOvernight(rows, ctx, weekStart) {
+  const now = new Date()
+  const covered = {}
+  const usedKeys = new Set()
+  for (const r of rows) {
+    covered[r.taskId] = (covered[r.taskId] || 0) + (new Date(r.end) - new Date(r.start)) / 3600000
+    const s = new Date(r.start)
+    usedKeys.add(`${(s.getUTCDay() + 6) % 7}-${s.getUTCHours()}`)
+  }
+
+  const urgent = ctx.tasks
+    .map((t) => ({ task: t, left: t.effortHours - (covered[t.id] || 0), deadline: t.deadline }))
+    .filter((r) => r.left > 0.01 && new Date(r.deadline) - now <= URGENT_MS)
+  if (!urgent.length) return rows
+
+  const extra = []
+  for (const slot of [...ctx.overnightSlots].sort((a, b) => a.day - b.day || a.startHour - b.startHour)) {
+    const key = `${slot.day}-${slot.startHour}`
+    if (usedKeys.has(key)) continue
+    const cand = urgent.find((r) => r.left > 0.01)
+    if (!cand) break
+    const { start, end } = toDates(weekStart, slot.day, slot.startHour, Math.min(slot.hours, cand.left))
+    if (dateStr(start) > dateStr(cand.deadline)) continue // slot's date must be on/before the deadline
+    cand.left -= (end - start) / 3600000
+    usedKeys.add(key)
+    extra.push({
+      title: `Study: ${cand.task.title}`,
+      start,
+      end,
+      rationale: `Overnight session — the ${dateStr(cand.deadline)} deadline is close and daytime is full.`,
+      source: 'AI',
+      taskId: cand.task.id,
+    })
+  }
+  return rows.concat(extra)
+}
+
+// Validate raw blocks against the candidate slots and turn them into DB rows.
 function toRows(rawBlocks, ctx, weekStart, source) {
-  const free = new Set(ctx.freeSlots.map((s) => `${s.day}-${s.startHour}`))
+  const slotMap = new Map()
+  for (const s of ctx.freeSlots) slotMap.set(`${s.day}-${s.startHour}`, { hours: s.hours, overnight: false })
+  for (const s of ctx.overnightSlots) {
+    const k = `${s.day}-${s.startHour}`
+    if (!slotMap.has(k)) slotMap.set(k, { hours: s.hours, overnight: true })
+  }
+
+  const used = new Set()
   const perDay = {}
   const rows = []
   for (const b of rawBlocks) {
     const ti = Number(b.taskIndex)
     const day = Number(b.day)
     const startHour = Number(b.startHour)
-    const hours = Math.min(2, Math.max(1, Number(b.hours) || 2))
+    const key = `${day}-${startHour}`
     if (!Number.isInteger(ti) || ti < 0 || ti >= ctx.tasks.length) continue
-    if (!(day >= 0 && day <= 6) || !SLOT_HOURS.includes(startHour)) continue
-    if (!free.has(`${day}-${startHour}`)) continue // slot free & not already used
-    if ((perDay[day] || 0) + hours > ctx.prefs.maxStudyHours) continue
+    if (!slotMap.has(key) || used.has(key)) continue
+    const slot = slotMap.get(key)
+    const hours = Math.min(slot.hours, Math.max(1, Number(b.hours) || slot.hours))
+    // Regular slots respect the daily cap; overnight (emergency) bypasses it.
+    if (!slot.overnight && (perDay[day] || 0) + hours > ctx.prefs.maxStudyHours) continue
 
     const task = ctx.tasks[ti]
     const { start, end } = toDates(weekStart, day, startHour, hours)
@@ -131,8 +211,8 @@ function toRows(rawBlocks, ctx, weekStart, source) {
       source,
       taskId: task.id,
     })
-    free.delete(`${day}-${startHour}`)
-    perDay[day] = (perDay[day] || 0) + hours
+    used.add(key)
+    if (!slot.overnight) perDay[day] = (perDay[day] || 0) + hours
   }
   return rows
 }
@@ -156,12 +236,15 @@ async function planSchedule(weekStart, userId) {
     rows = toRows(generateWithRules(ctx), ctx, weekStart, 'RULE')
     source = 'RULE'
   }
+  // Guarantee urgent tasks get overnight coverage if regular time was insufficient.
+  rows = addUrgentOvernight(rows, ctx, weekStart)
   return { source, rows }
 }
 
 function persist(userId, weekStart, rows) {
   return prisma.$transaction(async (tx) => {
-    await tx.scheduleBlock.deleteMany({ where: { userId, weekStart } })
+    // A student has one active schedule — replace all of their blocks.
+    await tx.scheduleBlock.deleteMany({ where: { userId } })
     if (rows.length) await tx.scheduleBlock.createMany({ data: rows.map((r) => ({ ...r, userId, weekStart })) })
     return tx.scheduleBlock.findMany({ where: { userId, weekStart }, orderBy: { start: 'asc' } })
   })

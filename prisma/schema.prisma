@@ -95,7 +95,8 @@ model StudentPreferences {
   id                 String   @id @default(uuid())
   userId             String   @unique
   user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  availabilityGrid   Json? // 8 time-slots x 7 days of "free|class|work|blocked"
+  availabilityGrid   Json? // legacy 8x7 grid (kept for back-compat)
+  availability       Json? // per-day free time ranges: { Mon: [{start,end}], ... }
   maxStudyHours      Int      @default(6)
   focusTime          String   @default("Evening") // Morning | Evening | Late night
   minBreakMins       Int      @default(15)
