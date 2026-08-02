@@ -9,6 +9,9 @@ const schema = z.object({
   JWT_EXPIRES_IN: z.string().default('7d'),
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
   DIRECT_URL: z.string().min(1, 'DIRECT_URL is required'),
+  // AI (optional — a rule-based fallback runs if the key is absent or Groq fails).
+  GROQ_API_KEY: z.string().optional(),
+  GROQ_MODEL: z.string().default('llama-3.3-70b-versatile'),
 })
 
 const parsed = schema.safeParse(process.env)

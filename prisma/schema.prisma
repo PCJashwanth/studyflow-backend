@@ -66,6 +66,7 @@ model User {
   auditLogs      AuditLog[]
   preferences    StudentPreferences?
   courseRequests CourseRequest[]     @relation("StudentRequests")
+  scheduleBlocks ScheduleBlock[]
 
   @@map("users")
 }
@@ -138,16 +139,49 @@ model Task {
   effortHours Float      @default(1)
   priority    Priority   @default(MEDIUM)
   status      TaskStatus @default(NOT_STARTED)
+  // Added by a teammate (email deadline reminders) — kept in sync with the shared DB.
+  reminderSentAt DateTime?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+  scheduleBlocks ScheduleBlock[]
+
   @@index([courseId])
   @@index([deadline])
   @@index([status])
+  @@index([deadline, reminderSentAt])
   @@map("tasks")
+}
+
+enum BlockSource {
+  AI
+  RULE
+  MANUAL
+}
+
+// A generated (or manual) study block on the student's calendar.
+model ScheduleBlock {
+  id        String      @id @default(uuid())
+  title     String
+  start     DateTime
+  end       DateTime
+  rationale String?
+  source    BlockSource @default(AI)
+  weekStart DateTime // Monday of the week this block belongs to (for regeneration)
+  createdAt DateTime    @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  taskId String?
+  task   Task?   @relation(fields: [taskId], references: [id], onDelete: SetNull)
+
+  @@index([userId, start])
+  @@index([userId, weekStart])
+  @@map("schedule_blocks")
 }
 
 // Institution course catalog, managed by admins. Separate from a student's
