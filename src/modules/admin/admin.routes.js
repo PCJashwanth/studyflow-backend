@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import * as ctrl from './admin.controller.js'
 import {
+  createUserSchema,
+  updateUserSchema,
   updateRoleSchema,
   updateStatusSchema,
   createCourseSchema,
@@ -18,6 +20,8 @@ router.use(authenticate, requireRole('ADMIN'))
 
 router.get('/dashboard', asyncHandler(ctrl.dashboard))
 router.get('/users', asyncHandler(ctrl.listUsers))
+router.post('/users', validate(createUserSchema), asyncHandler(ctrl.createUser))
+router.patch('/users/:id', validate(updateUserSchema), asyncHandler(ctrl.updateUser))
 router.patch('/users/:id/role', validate(updateRoleSchema), asyncHandler(ctrl.updateRole))
 router.patch('/users/:id/status', validate(updateStatusSchema), asyncHandler(ctrl.setStatus))
 router.get('/audit-logs', asyncHandler(ctrl.auditLogs))

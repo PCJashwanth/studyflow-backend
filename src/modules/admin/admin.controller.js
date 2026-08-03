@@ -9,6 +9,14 @@ export async function listUsers(req, res) {
   res.json({ users: await service.listUsers(filters) })
 }
 
+export async function createUser(req, res) {
+  res.status(201).json({ user: await service.createUser(req.user.id, req.body) })
+}
+
+export async function updateUser(req, res) {
+  res.json({ user: await service.updateUser(req.user.id, req.params.id, req.body) })
+}
+
 export async function updateRole(req, res) {
   res.json({ user: await service.updateRole(req.user.id, req.params.id, req.body.role) })
 }
