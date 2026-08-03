@@ -15,6 +15,10 @@ const schema = z.object({
   MAIL_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'),
   CRON_SECRET: z.string().optional(), // secret the scheduler sends
   REMINDER_LEAD_HOURS: z.coerce.number().default(24), // how early to remind
+
+  // AI (optional — a rule-based fallback runs if the key is absent or Groq fails).
+  GROQ_API_KEY: z.string().optional(),
+  GROQ_MODEL: z.string().default('llama-3.3-70b-versatile'),
 })
 
 const parsed = schema.safeParse(process.env)

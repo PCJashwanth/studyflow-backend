@@ -66,6 +66,7 @@ model User {
   auditLogs      AuditLog[]
   preferences    StudentPreferences?
   courseRequests CourseRequest[]     @relation("StudentRequests")
+  scheduleBlocks ScheduleBlock[]
 
   @@map("users")
 }
@@ -94,7 +95,8 @@ model StudentPreferences {
   id                 String   @id @default(uuid())
   userId             String   @unique
   user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  availabilityGrid   Json? // 8 time-slots x 7 days of "free|class|work|blocked"
+  availabilityGrid   Json? // legacy 8x7 grid (kept for back-compat)
+  availability       Json? // per-day free time ranges: { Mon: [{start,end}], ... }
   maxStudyHours      Int      @default(6)
   focusTime          String   @default("Evening") // Morning | Evening | Late night
   minBreakMins       Int      @default(15)
@@ -146,11 +148,41 @@ model Task {
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+  scheduleBlocks ScheduleBlock[]
+
   @@index([courseId])
   @@index([deadline])
   @@index([status])
   @@index([deadline, reminderSentAt])
   @@map("tasks")
+}
+
+enum BlockSource {
+  AI
+  RULE
+  MANUAL
+}
+
+// A generated (or manual) study block on the student's calendar.
+model ScheduleBlock {
+  id        String      @id @default(uuid())
+  title     String
+  start     DateTime
+  end       DateTime
+  rationale String?
+  source    BlockSource @default(AI)
+  weekStart DateTime // Monday of the week this block belongs to (for regeneration)
+  createdAt DateTime    @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  taskId String?
+  task   Task?   @relation(fields: [taskId], references: [id], onDelete: SetNull)
+
+  @@index([userId, start])
+  @@index([userId, weekStart])
+  @@map("schedule_blocks")
 }
 
 // Institution course catalog, managed by admins. Separate from a student's

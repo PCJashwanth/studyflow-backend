@@ -2,25 +2,38 @@ import { prisma } from '../../lib/prisma.js'
 
 const OPEN = ['NOT_STARTED', 'IN_PROGRESS'] // incomplete statuses
 
+export const DEFAULT_AVAILABILITY = {
+  Mon: [{ start: '18:00', end: '22:00' }],
+  Tue: [{ start: '18:00', end: '22:00' }],
+  Wed: [{ start: '18:00', end: '22:00' }],
+  Thu: [{ start: '18:00', end: '22:00' }],
+  Fri: [{ start: '16:00', end: '20:00' }],
+  Sat: [{ start: '10:00', end: '18:00' }],
+  Sun: [{ start: '10:00', end: '18:00' }],
+}
+
 const DEFAULT_PREFERENCES = {
-  availabilityGrid: null,
+  availability: DEFAULT_AVAILABILITY,
   maxStudyHours: 6,
   focusTime: 'Evening',
   minBreakMins: 15,
   notifyBeforeBlocks: true,
 }
 
-// Returns the student's saved preferences, or sensible defaults if none yet.
-export async function getPreferences(userId) {
-  const prefs = await prisma.studentPreferences.findUnique({ where: { userId } })
-  if (!prefs) return DEFAULT_PREFERENCES
+function shape(prefs) {
   return {
-    availabilityGrid: prefs.availabilityGrid,
+    availability: prefs.availability || DEFAULT_AVAILABILITY,
     maxStudyHours: prefs.maxStudyHours,
     focusTime: prefs.focusTime,
     minBreakMins: prefs.minBreakMins,
     notifyBeforeBlocks: prefs.notifyBeforeBlocks,
   }
+}
+
+// Returns the student's saved preferences, or sensible defaults if none yet.
+export async function getPreferences(userId) {
+  const prefs = await prisma.studentPreferences.findUnique({ where: { userId } })
+  return prefs ? shape(prefs) : DEFAULT_PREFERENCES
 }
 
 // Upsert: create the row on first save, update it thereafter.
@@ -30,13 +43,7 @@ export async function savePreferences(userId, data) {
     create: { userId, ...data },
     update: { ...data },
   })
-  return {
-    availabilityGrid: prefs.availabilityGrid,
-    maxStudyHours: prefs.maxStudyHours,
-    focusTime: prefs.focusTime,
-    minBreakMins: prefs.minBreakMins,
-    notifyBeforeBlocks: prefs.notifyBeforeBlocks,
-  }
+  return shape(prefs)
 }
 
 export async function getDashboard(userId) {
