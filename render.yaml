@@ -1,0 +1,41 @@
+# Render Blueprint for the StudyFlow backend.
+# Deploy: Render dashboard → New → Blueprint → connect this repo → it reads this file
+# and prompts for the secrets marked `sync: false`. See README / A2 runbook for values.
+services:
+  - type: web
+    name: studyflow-backend
+    runtime: node
+    plan: free
+    region: oregon
+    branch: dev
+    buildCommand: npm install && npx prisma migrate deploy
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: RESEND_FROM
+        value: StudyFlow <onboarding@resend.dev>
+      - key: MAIL_FROM
+        value: StudyFlow <onboarding@resend.dev>
+      - key: REMINDER_LEAD_HOURS
+        value: "24"
+      # --- secrets: set these in the Render dashboard (never committed) ---
+      - key: DATABASE_URL      # Supabase transaction pooler, port 6543, ?pgbouncer=true
+        sync: false
+      - key: DIRECT_URL        # Supabase direct, port 5432 (used by prisma migrate)
+        sync: false
+      - key: JWT_SECRET        # openssl rand -hex 32
+        sync: false
+      - key: CORS_ORIGIN       # the deployed Vercel URL (set after frontend deploys)
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CRON_SECRET       # openssl rand -hex 32 (for the reminder dispatcher)
+        sync: false
