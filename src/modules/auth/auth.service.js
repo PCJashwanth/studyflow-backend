@@ -20,21 +20,50 @@ function publicUser(u) {
   }
 }
 
-// Create a fresh single-use login code, email it, and return the plaintext
-// (the caller only exposes it in development for testing).
-async function issueLoginOtp(user) {
+// Create a fresh single-use code for a purpose, invalidating any prior unconsumed
+// ones. Returns the plaintext code (only ever exposed via email or the dev log).
+async function createOtp(user, purpose) {
   const code = String(crypto.randomInt(0, 1_000_000)).padStart(6, '0')
   const codeHash = await hashPassword(code)
 
-  // Invalidate any previous unconsumed codes for this user.
   await prisma.otpCode.updateMany({
-    where: { userId: user.id, purpose: 'LOGIN', consumedAt: null },
+    where: { userId: user.id, purpose, consumedAt: null },
     data: { consumedAt: new Date() },
   })
   await prisma.otpCode.create({
-    data: { userId: user.id, codeHash, purpose: 'LOGIN', expiresAt: new Date(Date.now() + OTP_TTL_MIN * 60_000) },
+    data: { userId: user.id, codeHash, purpose, expiresAt: new Date(Date.now() + OTP_TTL_MIN * 60_000) },
   })
 
+  // Server-side only, never sent to the browser. Logged outside production, or in
+  // production when OTP_DEBUG_LOG=true — lets us read the code from the server logs
+  // for a live demo when Resend can't deliver to the demo accounts.
+  if (env.NODE_ENV !== 'production' || env.OTP_DEBUG_LOG === 'true') {
+    console.log(`[otp:dev] ${purpose.toLowerCase()} code for ${user.email}: ${code}`)
+  }
+  return code
+}
+
+// Verify (and consume) the latest unconsumed code of a purpose. Throws on any failure.
+async function consumeOtp(user, purpose, code) {
+  const otp = await prisma.otpCode.findFirst({
+    where: { userId: user.id, purpose, consumedAt: null },
+    orderBy: { createdAt: 'desc' },
+  })
+  if (!otp || otp.expiresAt < new Date()) throw httpError('Code expired — please try again', 400)
+  if (otp.attempts >= OTP_MAX_ATTEMPTS) {
+    await prisma.otpCode.update({ where: { id: otp.id }, data: { consumedAt: new Date() } })
+    throw httpError('Too many attempts — please try again', 400)
+  }
+  const match = await verifyPassword(code, otp.codeHash)
+  if (!match) {
+    await prisma.otpCode.update({ where: { id: otp.id }, data: { attempts: { increment: 1 } } })
+    throw httpError('Invalid code', 400)
+  }
+  await prisma.otpCode.update({ where: { id: otp.id }, data: { consumedAt: new Date() } })
+}
+
+async function issueLoginOtp(user) {
+  const code = await createOtp(user, 'LOGIN')
   await sendEmail({
     to: user.email,
     subject: 'Your StudyFlow login code',
@@ -42,14 +71,17 @@ async function issueLoginOtp(user) {
       <p style="font-size:28px;font-weight:700;letter-spacing:4px">${code}</p>
       <p>It expires in ${OTP_TTL_MIN} minutes. If you didn't try to sign in, ignore this email.</p></div>`,
   })
+}
 
-  // Server-side only, never sent to the browser. Logged outside production, or in
-  // production when OTP_DEBUG_LOG=true — lets us read the code from the server logs
-  // for a live demo when Resend can't deliver to the demo accounts.
-  if (env.NODE_ENV !== 'production' || env.OTP_DEBUG_LOG === 'true') {
-    console.log(`[otp:dev] login code for ${user.email}: ${code}`)
-  }
-  return code
+async function issueResetOtp(user) {
+  const code = await createOtp(user, 'RESET')
+  await sendEmail({
+    to: user.email,
+    subject: 'Reset your StudyFlow password',
+    html: `<div style="font-family:sans-serif"><p>Your StudyFlow password-reset code is:</p>
+      <p style="font-size:28px;font-weight:700;letter-spacing:4px">${code}</p>
+      <p>It expires in ${OTP_TTL_MIN} minutes. If you didn't request a reset, ignore this email.</p></div>`,
+  })
 }
 
 function withToken(user) {
@@ -87,25 +119,28 @@ export async function verifyOtp({ email, code }) {
   const user = await prisma.user.findUnique({ where: { email } })
   if (!user) throw httpError('Invalid or expired code', 400)
 
-  const otp = await prisma.otpCode.findFirst({
-    where: { userId: user.id, purpose: 'LOGIN', consumedAt: null },
-    orderBy: { createdAt: 'desc' },
-  })
-  if (!otp || otp.expiresAt < new Date()) throw httpError('Code expired — please sign in again', 400)
-  if (otp.attempts >= OTP_MAX_ATTEMPTS) {
-    await prisma.otpCode.update({ where: { id: otp.id }, data: { consumedAt: new Date() } })
-    throw httpError('Too many attempts — please sign in again', 400)
-  }
-
-  const match = await verifyPassword(code, otp.codeHash)
-  if (!match) {
-    await prisma.otpCode.update({ where: { id: otp.id }, data: { attempts: { increment: 1 } } })
-    throw httpError('Invalid code', 400)
-  }
-
-  await prisma.otpCode.update({ where: { id: otp.id }, data: { consumedAt: new Date() } })
+  await consumeOtp(user, 'LOGIN', code)
   if (!user.isActive) throw httpError('Account is deactivated', 403)
   return withToken(user)
+}
+
+// Forgot password, step 1: email a reset code. Always returns ok so the response
+// never reveals whether an account exists for that email.
+export async function requestPasswordReset({ email }) {
+  const user = await prisma.user.findUnique({ where: { email } })
+  if (user && user.isActive) await issueResetOtp(user)
+  return { ok: true }
+}
+
+// Forgot password, step 2: verify the reset code and set the new password.
+export async function resetPassword({ email, code, newPassword }) {
+  const user = await prisma.user.findUnique({ where: { email } })
+  if (!user) throw httpError('Invalid or expired code', 400)
+
+  await consumeOtp(user, 'RESET', code)
+  const passwordHash = await hashPassword(newPassword)
+  await prisma.user.update({ where: { id: user.id }, data: { passwordHash } })
+  return { ok: true }
 }
 
 export async function getMe(userId) {
