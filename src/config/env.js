@@ -10,9 +10,10 @@ const schema = z.object({
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
   DIRECT_URL: z.string().min(1, 'DIRECT_URL is required'),
 
-  //Notifications (optional; no key = emails just get logged) ----
+  // Email (Resend). One key drives both mailers; with no key, emails are logged.
   RESEND_API_KEY: z.string().optional(),
-  MAIL_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'),
+  MAIL_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'), // reminder mailer (lib/mailer.js)
+  RESEND_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'), // OTP mailer (integrations/resend.js)
   CRON_SECRET: z.string().optional(), // secret the scheduler sends
   REMINDER_LEAD_HOURS: z.coerce.number().default(24), // how early to remind
 

@@ -26,12 +26,14 @@ export const createCourseSchema = z.object({
   code: z.string().min(1),
   title: z.string().min(1),
   instructorName: z.string().optional(),
+  instructorId: z.string().uuid().nullable().optional(),
   term: z.string().optional(),
 })
 
 export const updateCourseSchema = z.object({
   title: z.string().min(1).optional(),
   instructorName: z.string().optional(),
+  instructorId: z.string().uuid().nullable().optional(),
   term: z.string().optional(),
   status: z.enum(['ACTIVE', 'ARCHIVED']).optional(),
 })

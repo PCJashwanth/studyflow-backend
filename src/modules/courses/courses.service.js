@@ -24,9 +24,34 @@ export async function createCourse(userId, { code }) {
   if (!catalog) throw httpError('That course is not in the catalog — please request it.', 400)
   const existing = await prisma.course.findFirst({ where: { userId, code: catalog.code } })
   if (existing) throw httpError('You are already enrolled in this course', 409)
-  return prisma.course.create({
-    data: { userId, code: catalog.code, title: catalog.title, instructorName: catalog.instructorName },
+
+  const course = await prisma.course.create({
+    data: {
+      userId,
+      code: catalog.code,
+      title: catalog.title,
+      instructorName: catalog.instructorName,
+      instructorId: catalog.instructorId,
+    },
   })
+
+  // Copy any existing instructor assignments for this course into the student's tasks.
+  const assignments = await prisma.assignment.findMany({ where: { code: catalog.code } })
+  if (assignments.length) {
+    await prisma.task.createMany({
+      data: assignments.map((a) => ({
+        courseId: course.id,
+        assignmentId: a.id,
+        title: a.title,
+        type: a.type,
+        deadline: a.deadline,
+        effortHours: a.effortHours,
+        priority: a.priority,
+        status: 'NOT_STARTED',
+      })),
+    })
+  }
+  return course
 }
 
 // The active catalog a student can enroll from.
