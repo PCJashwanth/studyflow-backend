@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import compression from 'compression'
 import { env } from './config/env.js'
 import authRoutes from './modules/auth/auth.routes.js'
 import courseRoutes from './modules/courses/courses.routes.js'
@@ -22,6 +23,9 @@ export function createApp() {
   const allowedOrigins = env.CORS_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
 
   app.use(helmet())
+  // Server-side optimization: gzip JSON responses before they go over the wire.
+  // List endpoints are repetitive JSON, so they compress well.
+  app.use(compression())
   app.use(cors({ origin: allowedOrigins, credentials: true }))
   app.use(express.json())
   if (env.NODE_ENV !== 'test') app.use(morgan('dev'))
