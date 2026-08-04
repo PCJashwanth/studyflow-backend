@@ -61,14 +61,34 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  courses        Course[]            @relation("StudentCourses")
-  taughtCourses  Course[]            @relation("InstructorCourses")
-  auditLogs      AuditLog[]
-  preferences    StudentPreferences?
-  courseRequests CourseRequest[]     @relation("StudentRequests")
-  scheduleBlocks ScheduleBlock[]
+  courses         Course[]            @relation("StudentCourses")
+  taughtCourses   Course[]            @relation("InstructorCourses")
+  auditLogs       AuditLog[]
+  preferences     StudentPreferences?
+  courseRequests  CourseRequest[]     @relation("StudentRequests")
+  scheduleBlocks  ScheduleBlock[]
+  catalogCourses  CatalogCourse[]     @relation("InstructorCatalog")
+  assignments     Assignment[]        @relation("InstructorAssignments")
+  otpCodes        OtpCode[]
 
   @@map("users")
+}
+
+// One-time login codes (email 2FA). Codes are stored hashed and single-use.
+model OtpCode {
+  id         String    @id @default(uuid())
+  codeHash   String
+  purpose    String    @default("LOGIN")
+  expiresAt  DateTime
+  consumedAt DateTime?
+  attempts   Int       @default(0)
+  createdAt  DateTime  @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("otp_codes")
 }
 
 // A student's request for the admin to add a course to the catalog.
@@ -148,12 +168,17 @@ model Task {
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+  // Set when this task came from an instructor-created assignment.
+  assignmentId String?
+  assignment   Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+
   scheduleBlocks ScheduleBlock[]
 
   @@index([courseId])
   @@index([deadline])
   @@index([status])
   @@index([deadline, reminderSentAt])
+  @@index([assignmentId])
   @@map("tasks")
 }
 
@@ -197,7 +222,35 @@ model CatalogCourse {
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 
+  // The instructor account assigned to teach this course.
+  instructorId String?
+  instructor   User?   @relation("InstructorCatalog", fields: [instructorId], references: [id], onDelete: SetNull)
+
+  @@index([instructorId])
   @@map("catalog_courses")
+}
+
+// An assignment an instructor creates for a catalog course. On creation it is
+// fanned out as a Task to every enrolled student.
+model Assignment {
+  id          String   @id @default(uuid())
+  code        String // catalog course code
+  title       String
+  type        TaskType @default(ASSIGNMENT)
+  deadline    DateTime
+  effortHours Float    @default(2)
+  priority    Priority @default(MEDIUM)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  instructorId String
+  instructor   User   @relation("InstructorAssignments", fields: [instructorId], references: [id], onDelete: Cascade)
+
+  tasks Task[]
+
+  @@index([code])
+  @@index([instructorId])
+  @@map("assignments")
 }
 
 model AuditLog {

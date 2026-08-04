@@ -18,21 +18,44 @@ function writeAudit(actorId, action, targetId, meta) {
 
 // ---- Course catalog ----
 
+const courseInstructor = { include: { instructor: { select: { id: true, fullName: true } } } }
+
+export function listInstructors() {
+  return prisma.user.findMany({
+    where: { role: 'INSTRUCTOR', isActive: true },
+    select: { id: true, fullName: true, email: true },
+    orderBy: { fullName: 'asc' },
+  })
+}
+
 // List catalog courses, with a derived enrollment count per code (how many
 // students have that course code in their personal course list).
 export async function listCourses() {
   const [courses, grouped] = await Promise.all([
-    prisma.catalogCourse.findMany({ orderBy: { createdAt: 'desc' } }),
+    prisma.catalogCourse.findMany({ orderBy: { createdAt: 'desc' }, ...courseInstructor }),
     prisma.course.groupBy({ by: ['code'], _count: { _all: true } }),
   ])
   const countByCode = Object.fromEntries(grouped.map((g) => [g.code, g._count._all]))
   return courses.map((c) => ({ ...c, students: countByCode[c.code] || 0 }))
 }
 
+// Look up an instructor's name to keep the display field in sync with the link.
+async function withInstructorName(data) {
+  const out = { ...data }
+  if (data.instructorId) {
+    const instr = await prisma.user.findFirst({ where: { id: data.instructorId, role: 'INSTRUCTOR' }, select: { fullName: true } })
+    if (!instr) throw httpError('Instructor not found', 400)
+    out.instructorName = instr.fullName
+  } else if (data.instructorId === null) {
+    out.instructorName = null
+  }
+  return out
+}
+
 export async function createCourse(actorId, data) {
   const existing = await prisma.catalogCourse.findUnique({ where: { code: data.code } })
   if (existing) throw httpError('A course with this code already exists', 409)
-  const course = await prisma.catalogCourse.create({ data })
+  const course = await prisma.catalogCourse.create({ data: await withInstructorName(data), ...courseInstructor })
   await prisma.auditLog.create({
     data: { actorId, action: 'COURSE_CREATED', targetType: 'Course', targetId: course.id, meta: { code: course.code } },
   })
@@ -42,7 +65,7 @@ export async function createCourse(actorId, data) {
 export async function updateCourse(actorId, id, data) {
   const existing = await prisma.catalogCourse.findUnique({ where: { id } })
   if (!existing) throw httpError('Course not found', 404)
-  const course = await prisma.catalogCourse.update({ where: { id }, data })
+  const course = await prisma.catalogCourse.update({ where: { id }, data: await withInstructorName(data), ...courseInstructor })
   if (data.status && data.status !== existing.status) {
     await prisma.auditLog.create({
       data: {

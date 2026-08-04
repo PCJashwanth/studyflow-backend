@@ -11,3 +11,7 @@ export async function assignments(req, res) {
 export async function workload(req, res) {
   res.json(await service.getWorkload(req.user.id))
 }
+
+export async function createAssignment(req, res) {
+  res.status(201).json(await service.createAssignment(req.user.id, req.body))
+}

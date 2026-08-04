@@ -12,6 +12,9 @@ const schema = z.object({
   // AI (optional — a rule-based fallback runs if the key is absent or Groq fails).
   GROQ_API_KEY: z.string().optional(),
   GROQ_MODEL: z.string().default('llama-3.3-70b-versatile'),
+  // Email (Resend) for OTP + notifications. Optional — dev logs the code if absent.
+  RESEND_API_KEY: z.string().optional(),
+  RESEND_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'),
 })
 
 const parsed = schema.safeParse(process.env)

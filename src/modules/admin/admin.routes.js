@@ -22,6 +22,7 @@ router.patch('/users/:id/role', validate(updateRoleSchema), asyncHandler(ctrl.up
 router.patch('/users/:id/status', validate(updateStatusSchema), asyncHandler(ctrl.setStatus))
 router.get('/audit-logs', asyncHandler(ctrl.auditLogs))
 
+router.get('/instructors', asyncHandler(ctrl.listInstructors))
 router.get('/courses', asyncHandler(ctrl.listCourses))
 router.post('/courses', validate(createCourseSchema), asyncHandler(ctrl.createCourse))
 router.patch('/courses/:id', validate(updateCourseSchema), asyncHandler(ctrl.updateCourse))

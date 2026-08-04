@@ -29,6 +29,10 @@ export async function listCourses(req, res) {
   res.json({ courses: await service.listCourses() })
 }
 
+export async function listInstructors(req, res) {
+  res.json({ instructors: await service.listInstructors() })
+}
+
 export async function createCourse(req, res) {
   res.status(201).json({ course: await service.createCourse(req.user.id, req.body) })
 }
