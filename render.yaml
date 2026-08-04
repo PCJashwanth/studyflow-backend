@@ -24,6 +24,8 @@ services:
         value: StudyFlow <onboarding@resend.dev>
       - key: REMINDER_LEAD_HOURS
         value: "24"
+      - key: OTP_DEBUG_LOG   # log OTP codes to server logs so the live demo can read them
+        value: "true"
       # --- secrets: set these in the Render dashboard (never committed) ---
       - key: DATABASE_URL      # Supabase transaction pooler, port 6543, ?pgbouncer=true
         sync: false

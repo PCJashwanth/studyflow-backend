@@ -36,9 +36,10 @@ async function issueLoginOtp(user) {
       <p>It expires in ${OTP_TTL_MIN} minutes. If you didn't try to sign in, ignore this email.</p></div>`,
   })
 
-  // Server-side only, never in production and never sent to the browser — lets
-  // developers grab the code from the terminal when testing without a real inbox.
-  if (env.NODE_ENV !== 'production') {
+  // Server-side only, never sent to the browser. Logged outside production, or in
+  // production when OTP_DEBUG_LOG=true — lets us read the code from the server logs
+  // for a live demo when Resend can't deliver to the demo accounts.
+  if (env.NODE_ENV !== 'production' || env.OTP_DEBUG_LOG === 'true') {
     console.log(`[otp:dev] login code for ${user.email}: ${code}`)
   }
   return code

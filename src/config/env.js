@@ -14,6 +14,7 @@ const schema = z.object({
   RESEND_API_KEY: z.string().optional(),
   MAIL_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'), // reminder mailer (lib/mailer.js)
   RESEND_FROM: z.string().default('StudyFlow <onboarding@resend.dev>'), // OTP mailer (integrations/resend.js)
+  OTP_DEBUG_LOG: z.string().optional(), // 'true' → log OTP codes to the server even in production (demo)
   CRON_SECRET: z.string().optional(), // secret the scheduler sends
   REMINDER_LEAD_HOURS: z.coerce.number().default(24), // how early to remind
 
