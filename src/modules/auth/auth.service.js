@@ -10,7 +10,14 @@ const OTP_TTL_MIN = 5
 const OTP_MAX_ATTEMPTS = 5
 
 function publicUser(u) {
-  return { id: u.id, fullName: u.fullName, email: u.email, role: u.role, createdAt: u.createdAt }
+  return {
+    id: u.id,
+    fullName: u.fullName,
+    email: u.email,
+    role: u.role,
+    createdAt: u.createdAt,
+    avatarUrl: u.settings?.avatarUrl ?? null,
+  }
 }
 
 // Create a fresh single-use login code, email it, and return the plaintext
