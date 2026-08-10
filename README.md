@@ -47,4 +47,4 @@ Auth endpoints return `{ token, user }`. Send the token as `Authorization: Beare
 ## Conventions
 - Controllers stay thin (HTTP I/O only); business logic lives in `*.service.js`.
 - Services throw `Error` with a `.status`; the central error handler shapes the response.
-- Every new domain = a folder under `src/modules/` with routes + controller + service + schema
+- Every new domain = a folder under `src/modules/` with routes + controller + service + schema.
